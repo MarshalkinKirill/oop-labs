@@ -10,7 +10,7 @@ csharp_style_var_elsewhere =false:warning
 dotnet_diagnostic.IDE0008.severity = warning
 
 # IDE0005: Using directive is unnecessary.
-dotnet_diagnostic.IDE0005.severity = warning
+dotnet_diagnostic.IDE0005.severity = none
 
 # IDE0040: Add accessibility modifiers
 dotnet_style_require_accessibility_modifiers = always
@@ -52,6 +52,12 @@ csharp_new_line_before_members_in_object_initializers=false
 # SA1502: Element should not be on a single line
 dotnet_diagnostic.SA1502.severity = silent
 
+# SA1602: Enumeration items should be documented
+dotnet_diagnostic.SA1602.severity = none
+
+# SA1413: Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1413.severity = none
+
 [*.{cs,vb}]
 dotnet_style_prefer_auto_properties=true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method=true:warning
@@ -81,3 +87,6 @@ dotnet_diagnostic.SA0001.severity = none
 
 # SA1500: Braces for multi-line statements should not share line
 dotnet_diagnostic.SA1500.severity = error
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = none
