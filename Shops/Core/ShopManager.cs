@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shops.Core.Types;
+using Shops.Core.Exceptions;
 
 namespace Shops.Core
 {
@@ -44,71 +46,18 @@ namespace Shops.Core
                         }
                         else
                         {
-                            throw new Exception("Quantity < 0");
+                            throw new InsufficientQtyProductErrorException("Insufficient Qty Product");
                         }
                     }
                 }
                 else
                 {
-                    throw new Exception("Недоступный продукт");
+                    throw new UnknownProductErrorException("Not avaliable Product");
                 }
             }
             else
             {
-                throw new Exception("Недоступный магазин");
-            }
-        }
-
-        public string FindCheapestProduct(Product _product, int _qty)//
-        {
-            int minPrice = int.MaxValue;
-            string shopName = "1";
-            //Console.WriteLine(shopList[1].ProductList[1].Name);
-            foreach (KeyValuePair<int, Shop> shop in shopList)
-            {
-                //Console.WriteLine(shop.Value.ProductList[_product.Id].Price);
-                if (shop.Value.ProductList.ContainsKey(_product.Id))
-                {
-                    if (minPrice > shop.Value.ProductList[_product.Id].Price)
-                    {
-                        if (shop.Value.ProductList[_product.Id].Quantity >= _qty)
-                        {
-                            minPrice = shop.Value.ProductList[_product.Id].Price;
-                            shopName = shop.Value.Name;
-                        }
-                    }
-                }
-
-
-            }
-            if (shopName == "1")
-            {
-                throw new Exception("ни один магазин не содержит товара");
-            }
-            return shopName;
-        }
-
-        public void WhatCanBuy(Shop _shop, int _amount)
-        {
-            int qty = 0;
-            if (shopList.ContainsKey(_shop.Id))
-            {
-                foreach (KeyValuePair<int, Product> product in _shop.ProductList)
-                {
-                    if (product.Value.Price <= _amount)
-                    {
-                        qty = _amount / product.Value.Price;
-                        Console.WriteLine($"You can buy {qty} {product.Value.Name}");
-                    }
-                }
-                if (qty == 0)
-                {
-                    Console.WriteLine($"You can't buy anything");
-                }
-            }
-            else
-            {
-                throw new Exception("1");
+                throw new UnknownShopErrorException("Not avaliable shop");
             }
         }
 
@@ -128,22 +77,22 @@ namespace Shops.Core
                         }
                         else
                         {
-                            throw new Exception("client money is not enough");
+                            throw new InsufficientAmountOfMoneyErrorException("client money is not enough");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Not enough quantity");
+                        throw new InsufficientQtyProductErrorException("Insufficient Qty Product");
                     }
                 }
                 else
                 {
-                    throw new Exception("Not avaliable product");
+                    throw new UnknownProductErrorException("Not avaliable Product");
                 }
             }
             else
             {
-                throw new Exception("Not avaliable shop");
+                throw new UnknownShopErrorException("Not avaliable shop");
             }
             return sum;
         }
@@ -167,11 +116,11 @@ namespace Shops.Core
                 }
                 if (c != _order.Count)
                 {
-                    throw new Exception("нет всех продуктов из списка или их кол-во недостаточно");
+                    throw new ConditionsOfShoppingListNotSatisfiedErrorException("Conditions of shopping list not satisfied");
                 }
                 if (sum > _client.money)
                 {
-                    throw new Exception("клиенту не хватает денег");
+                    throw new InsufficientAmountOfMoneyErrorException("client money is not enough");
                 }
                 foreach ((Product _product, int _qty) el in _order)
                 {
@@ -187,7 +136,7 @@ namespace Shops.Core
             }
             else
             {
-                throw new Exception("Not avaliable shop");
+                throw new UnknownShopErrorException("Not avaliable shop");
             }
         }
         public string FindCheapestShop(List<(Product _product, int _qty)> _order)
@@ -229,7 +178,7 @@ namespace Shops.Core
             }
             if (cheapestShopName == "")
             {
-                throw new Exception("Магазин удовлетворяющий список не был найден");
+                throw new NoShopSatisfyingShopingListErrorException("No shop satisfying shoping list");
             }
             return cheapestShopName;
         }

@@ -1,6 +1,8 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shops.Core;
+using Shops.Core.Types;
+using Shops.Core.Exceptions;
 using System.Collections.Generic;
 
 namespace Shop.tests
@@ -84,7 +86,7 @@ namespace Shop.tests
 
             myList.Add((shopManager.GetAllProducts()[3], 10));
             Action acrual = () => shopManager.FindCheapestShop(myList);
-            Assert.ThrowsException<Exception>(acrual);
+            Assert.ThrowsException<NoShopSatisfyingShopingListErrorException>(acrual);
         }
 
         [TestMethod]
@@ -114,7 +116,7 @@ namespace Shop.tests
 
             myList.Add((shopManager.GetAllProducts()[3], 2));
             Action acrual = () => shopManager.BuyABigBatchOfProducts(shopManager.GetAllShops()[1], myList, client);
-            Assert.ThrowsException<Exception>(acrual);
+            Assert.ThrowsException<ConditionsOfShoppingListNotSatisfiedErrorException>(acrual);
         }
     }
 }
