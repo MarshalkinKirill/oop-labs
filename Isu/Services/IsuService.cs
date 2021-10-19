@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Isu.Core.Abstuctions;
-using Isu.Core.SystemObjects.Types;
+using Isu.Services.Types;
 
-namespace Isu.Core.SystemObjects
+namespace Isu.Services
 {
     public class Service : IIsuService
     {

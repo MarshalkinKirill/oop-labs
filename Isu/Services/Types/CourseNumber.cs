@@ -1,4 +1,4 @@
-﻿namespace Isu.Core.SystemObjects.Types
+﻿namespace Isu.Services.Types
 {
     public class CourseNumber
     {

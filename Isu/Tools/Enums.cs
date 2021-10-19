@@ -1,4 +1,4 @@
-﻿namespace Isu.Core.Enums
+﻿namespace Isu.Tools.Enums
 {
     public enum Status
     {
