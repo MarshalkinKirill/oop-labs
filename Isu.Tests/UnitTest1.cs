@@ -1,7 +1,6 @@
-using Isu.Core.Abstuctions;
-using Isu.Core.Enums;
-using Isu.Core.SystemObjects;
-using Isu.Core.SystemObjects.Types;
+using Isu.Tools.Enums;
+using Isu.Services;
+using Isu.Services.Types;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;

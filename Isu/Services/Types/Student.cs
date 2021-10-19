@@ -1,6 +1,6 @@
-﻿using Isu.Core.Enums;
+﻿using Isu.Tools.Enums;
 
-namespace Isu.Core.SystemObjects.Types
+namespace Isu.Services.Types
 {
     public class Student
     {

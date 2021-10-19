@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Isu.Core.SystemObjects.Types
+namespace Isu.Services.Types
 {
     public class GroupName
     {

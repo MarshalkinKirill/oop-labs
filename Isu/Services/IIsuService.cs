@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Isu.Core.SystemObjects.Types;
+using Isu.Services.Types;
 
-namespace Isu.Core.Abstuctions
+namespace Isu.Services
 {
     public interface IIsuService
     {
