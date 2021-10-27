@@ -1,4 +1,5 @@
-﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Isu.Services.Types;
@@ -8,11 +9,13 @@ using IsuExtra.Core.Types;
 using IsuExtra.Core.Tools;
 using IsuExtra.Core;
 
-namespace IsuExtra
+namespace IsuExtra.Tests
 {
-    internal class Program
+    [TestClass]
+    public class UnitTest1
     {
-        private static void Main()
+        [TestMethod]
+        public void TestMethod1()
         {
             List<Faculty> faculties = new List<Faculty>();
             faculties.Add(new Faculty("1", "M"));
@@ -80,22 +83,30 @@ namespace IsuExtra
             List<Flow> electiveFlows2 = new List<Flow>();
             electiveFlows2.Add(new Flow(10, electiveSchadule2));
             Isu.AddElectiveModule(Isu.Faculty[1], "qwq", electiveFlows2);
-            //Console.WriteLine(Isu.Faculty[0].ElectiveModules[0].Name);
+
             //Add students to the elective modules
             Isu.AddStudentToElectiveModule(Isu.GroupService.FindStudent("Kirill"), Isu.Faculty[0].ElectiveModules[0]);
             Isu.AddStudentToElectiveModule(Isu.GroupService.FindStudent("Kirill"), faculties[1].ElectiveModules[0]);
+            Action acrual = () => Isu.AddStudentToElectiveModule(Isu.GroupService.FindStudent("Kirill"), faculties[1].ElectiveModules[0]);
+            Assert.ThrowsException<MaxElectiveModuleSelectedErrorException>(acrual);
             Isu.AddStudentToElectiveModule(Isu.GroupService.FindStudent("Ame"), faculties[0].ElectiveModules[0]);
             Isu.AddStudentToElectiveModule(Isu.GroupService.FindStudent("Ame"), faculties[1].ElectiveModules[0]);
 
             //Delete student from elective module
+            Assert.AreEqual(Isu.Faculty[1].ElectiveModules[0].Flows[0].Students.Count, 2);
             Isu.DeleteStudentFromElectiveModule(Isu.GroupService.FindStudent("Ame"), faculties[1].ElectiveModules[0]);
+            Assert.AreEqual(Isu.Faculty[1].ElectiveModules[0].Flows[0].Students.Count, 1);
 
             //Get flow
             List<Flow> catchFlows = Isu.GetElectiveModuleFlows(faculties[0].ElectiveModules[0]);
-            
+
+            //Get Students from flow
+            List<Student> catchStudents = Isu.GetFlowStudents(Isu.Faculty[1].ElectiveModules[0].Flows[0]);
+            Assert.AreEqual("Kirill", catchStudents[0].GetName());
+
             //Get unstudying students
             List<Student> students = Isu.GetUnsignedStudents(P3207);
-            
+            Assert.AreEqual("Yatoro", students[0].GetName());
         }
     }
 }
