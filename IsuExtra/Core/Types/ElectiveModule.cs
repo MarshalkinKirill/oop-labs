@@ -24,7 +24,7 @@ namespace IsuExtra.Core.Types
             flows = new List<Flow>();
         }
 
-        public void AddFlow(int _places, Schadule _schadule)
+        public void AddFlow(int _places, Schedule _schadule)
         {
             flows.Add(new Flow(_places, _schadule));
         }

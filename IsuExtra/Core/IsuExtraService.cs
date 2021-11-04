@@ -15,16 +15,16 @@ namespace IsuExtra.Core
         public Service GroupService { get { return IsuGroupService; } }
         private List<Faculty> faculties;
         public List<Faculty> Faculty {  get {  return faculties; }  }
-        private List<(Group, Schadule)> groupSchadules;
+        private List<(Group, Schedule)> groupSchadules;
 
         public IsuExtraService(List<Faculty> _faculties)
         {
             IsuGroupService = new Service();
             faculties = _faculties;
-            groupSchadules = new List<(Group, Schadule)>();
+            groupSchadules = new List<(Group, Schedule)>();
         }
 
-        public void AddGroup(GroupName _groupName, Schadule _schadule)
+        public void AddGroup(GroupName _groupName, Schedule _schadule)
         {
             IsuGroupService.AddGroup(_groupName);
             groupSchadules.Add((IsuGroupService.FindGroup(_groupName), _schadule));
@@ -55,12 +55,12 @@ namespace IsuExtra.Core
             _faculty.AddElectiveModule(_name, _flows);
         }
 
-        public bool CompatibilityChecker(Schadule schadule1, Schadule schadule2)
+        public bool CompatibilityChecker(Schedule schadule1, Schedule schadule2)
         {
             bool compatibility = true;
-            foreach (Class class1 in schadule1.Classes)
+            foreach (Lesson class1 in schadule1.Lessons)
             {
-                foreach (Class class2 in schadule2.Classes)
+                foreach (Lesson class2 in schadule2.Lessons)
                 {
                     if (class1.dateTime.Item1 == class2.dateTime.Item1 && class1.dateTime.Item2 == class2.dateTime.Item2)
                     {
@@ -103,9 +103,9 @@ namespace IsuExtra.Core
 
         }
 
-        public Schadule GetGroupSchadule(Group group)
+        public Schedule GetGroupSchadule(Group group)
         {
-            foreach ((Group, Schadule) groupSchadule in groupSchadules)
+            foreach ((Group, Schedule) groupSchadule in groupSchadules)
             {
                 if (groupSchadule.Item1 == group)
                 {
@@ -159,11 +159,11 @@ namespace IsuExtra.Core
                 throw new StudentBelongsElectiveModulsFacultyErrorException("Student belongs elective moduls faculty");
             }
             Group studentGroup = GetStudentGroup(_student);
-            Schadule groupSchadule = GetGroupSchadule(studentGroup);
+            Schedule groupSchadule = GetGroupSchadule(studentGroup);
             bool checker = false; 
             foreach (Flow flow in _electiveModule.Flows)
             {
-                if (CompatibilityChecker(flow.Schadule, groupSchadule) && flow.Students.Count <= flow.places)
+                if (CompatibilityChecker(flow.Schedule, groupSchadule) && flow.Students.Count <= flow.places)
                 {
                     checker = true;
                     flow.AddStudent(_student);

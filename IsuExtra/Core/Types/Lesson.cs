@@ -5,7 +5,7 @@ using Isu.Services.Types;
 
 namespace IsuExtra.Core.Types
 {
-    public class Class
+    public class Lesson
     {
         public Group group {  get; set; }
         public (string, string) dateTime {  get; set; }    
@@ -13,7 +13,7 @@ namespace IsuExtra.Core.Types
         public int classNumber {  get; set; }
         public string electiveGroupNumber { get; set; }
 
-        public Class(Group _group, (string, string) _datetime, Mentor _mentor, int _classnumber)
+        public Lesson(Group _group, (string, string) _datetime, Mentor _mentor, int _classnumber)
         {
             group = _group;
             dateTime = _datetime;
@@ -21,7 +21,7 @@ namespace IsuExtra.Core.Types
             classNumber = _classnumber;
         }
 
-        public Class(string _electiveGroupNumber, (string, string) _datetime, Mentor _mentor, int _classnumber)
+        public Lesson(string _electiveGroupNumber, (string, string) _datetime, Mentor _mentor, int _classnumber)
         {
             electiveGroupNumber = _electiveGroupNumber;
             dateTime = _datetime;

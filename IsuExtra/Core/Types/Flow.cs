@@ -11,13 +11,13 @@ namespace IsuExtra.Core.Types
         public int places;
         private List<Student> students {  get; set; }
         public List<Student> Students { get { return students; } }
-        private Schadule schadule {  get; set; }
-        public Schadule Schadule { get { return schadule; } }
+        private Schedule schedule {  get; set; }
+        public Schedule Schedule { get { return schedule; } }
 
-        public Flow(int _places, Schadule _schadule)
+        public Flow(int _places, Schedule _schadule)
         {
             places = _places;
-            schadule = _schadule;
+            schedule = _schadule;
             students = new List<Student>();
         } 
 
