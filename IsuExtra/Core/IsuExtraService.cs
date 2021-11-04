@@ -68,14 +68,7 @@ namespace IsuExtra.Core
                     }
                 }
             }
-            if (compatibility)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return compatibility ? true :  false;
         }
 
         public int CountStudentElectiveGroups(Student _student)
@@ -136,14 +129,7 @@ namespace IsuExtra.Core
         {
             Group studentGroup = GetStudentGroup(student);
             Faculty electiveModuleFaculty = GetFacultyByElectiveModule(electiveModule);
-            if (studentGroup.GetName().GetFacultyCutName() == electiveModuleFaculty.CutName)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (studentGroup.GetName().GetFacultyCutName() == electiveModuleFaculty.CutName) ? true : false;
         }
 
         public bool CheckElcetiveModuleExists(ElectiveModule electiveModule)
