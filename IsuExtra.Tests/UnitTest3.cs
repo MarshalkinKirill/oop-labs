@@ -12,10 +12,10 @@ using IsuExtra.Core;
 namespace IsuExtra.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest3
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Test1()
         {
             List<Faculty> faculties = new List<Faculty>();
             faculties.Add(new Faculty("1", "M"));
