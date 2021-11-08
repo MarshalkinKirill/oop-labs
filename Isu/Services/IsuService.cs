@@ -122,5 +122,10 @@ namespace Isu.Services
                 }
             }
         }
+
+        public List<Group> GetGroups()
+        {
+            return Groups;
+        }
     }
 }
