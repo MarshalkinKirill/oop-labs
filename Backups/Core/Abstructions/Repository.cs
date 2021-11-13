@@ -6,5 +6,6 @@ namespace Backups.Core
 {
     public abstract class Repository
     {
+        public abstract void AddFilePath(string _filePath);
     }
 }

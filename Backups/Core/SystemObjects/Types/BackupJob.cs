@@ -10,7 +10,9 @@ namespace Backups.Core.SystemObjects.Types
     {
         private readonly string name;
         private List<JobObject> jobObjects {  get; set; }
-        private Backup backup;
+        public List<JobObject> JobObjects { get { return jobObjects; } }
+        private Backup backup {  get; set; }
+        public Backup Backup { get { return backup; } }
         private StorageAlgorithm storageAlgorithm;
         private FileSystem fileSystem;
 

@@ -21,7 +21,7 @@ namespace Backups.Core.SystemObjects.Types
         {
         }
 
-        public void AddFilePath(string _filePath)
+        public override void AddFilePath(string _filePath)
         {
             filePath = _filePath;
         }
