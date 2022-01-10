@@ -1,4 +1,5 @@
-﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -7,13 +8,15 @@ using Backups.Core.Abstructions;
 using Backups.Core.SystemObjects.Algorithms;
 using Backups.Core.SystemObjects.Types;
 
-namespace Backups
+namespace Backups.Tests
 {
-    public class Program
+    [TestClass]
+    public class UnitTest4
     {
-        private static void Main()
+        [TestMethod]
+        public void Test1()
         {
-            BackupJob backupJob1 = new BackupJob("TextBackup", new SplitStorageAlgorithm());
+            BackupJob backupJob1 = new BackupJob("TextBackup", new SingleStorageAlgorithm());
             backupJob1.AddFilePath("Q:\\backupTests\\repos");
             JobObject obj_1 = new JobObject("Q:\\backupTests\\test1");
             JobObject obj_2 = new JobObject("Q:\\backupTests\\test2");
@@ -29,6 +32,8 @@ namespace Backups
             backupJob1.DeleteJobObject(obj_3);
 
             backupJob1.CreateRestorePoint();
+            Assert.AreEqual(backupJob1.Backup.RestorePoints.Count, 3);
+            Assert.AreEqual(backupJob1.Backup.RestorePoints[2].Storages.Count, 2);
         }
     }
 }
