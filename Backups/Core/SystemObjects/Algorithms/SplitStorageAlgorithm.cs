@@ -19,7 +19,7 @@ namespace Backups.Core.SystemObjects.Algorithms
                 string zipPath = _fileSystem.FilePath + "\\" + _name + "_" + _backup.RestorePoints.Count.ToString() + "_" + k.ToString() + ".zip";
                 k++;
                 ZipFile.CreateFromDirectory(jobObject.FilePath, zipPath);
-                storages.Add(new Storage(zipPath));
+                storages.Add(new Storage(zipPath, jobObject, Enums.StorageType.Split));
             }
             return storages;
         }

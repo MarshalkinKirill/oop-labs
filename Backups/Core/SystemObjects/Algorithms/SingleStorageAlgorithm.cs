@@ -18,7 +18,7 @@ namespace Backups.Core.SystemObjects.Algorithms
             _fileSystem.CopyFilesToDirectory(diInfo, _jobObjects);
             ZipFile.CreateFromDirectory(diInfo.FullName, zipPath);
             _fileSystem.DeleteDirectory(diInfo);
-            storages.Add(new Storage(zipPath));
+            storages.Add(new Storage(zipPath, _jobObjects, Enums.StorageType.Single));
             Console.WriteLine("Single storage create successfuly");
             return storages;
         }

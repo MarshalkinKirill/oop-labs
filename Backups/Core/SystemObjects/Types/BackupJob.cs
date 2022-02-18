@@ -14,7 +14,8 @@ namespace Backups.Core.SystemObjects.Types
         private Backup backup {  get; set; }
         public Backup Backup { get { return backup; } }
         private StorageAlgorithm storageAlgorithm;
-        private FileSystem fileSystem;
+        private FileSystem fileSystem { get; }
+        public FileSystem FileSystem { get { return fileSystem; } }
 
         public BackupJob(string _name, StorageAlgorithm _storageAlgorithm)
         {
@@ -35,7 +36,21 @@ namespace Backups.Core.SystemObjects.Types
             List<Storage> storages = storageAlgorithm.CreateStorage(fileSystem, jobObjects, backup, name);
             backup.AddRestorePoint(storages);
         }
-
+        //method added to show how does work merge in backupsExtra
+        public void CreateRestorePoint(RestorePoint restorePoint)
+        {
+            List<JobObject> _jobObjects = new List<JobObject>();
+            foreach (Storage storage in restorePoint.Storages)
+            {
+                foreach (JobObject jobObject in storage.JobObjects)
+                {
+                    _jobObjects.Add(jobObject);
+                }
+            }
+            storageAlgorithm.CreateStorage(fileSystem, _jobObjects, backup, name);
+            backup.AddRestorePoint(restorePoint.Storages);
+        }
+        //
         public void AddJobObject(JobObject _jobObject)
         {
             jobObjects.Add(_jobObject);

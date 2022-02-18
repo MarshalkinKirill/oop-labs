@@ -6,7 +6,8 @@ namespace Backups.Core.SystemObjects.Types
 {
     public class RestorePoint
     {
-        private DateTime dateTime;
+        private DateTime dateTime { get; }
+        public DateTime DateTime { get { return dateTime; } }
         private List<Storage> storages { get; set; }
         public List<Storage> Storages { get {  return storages; } }
 
@@ -15,5 +16,6 @@ namespace Backups.Core.SystemObjects.Types
             storages = _storages;
             dateTime = DateTime.Now;
         }
+        public RestorePoint() { }
     }
 }
