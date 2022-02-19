@@ -22,6 +22,7 @@ namespace Backups.Core.SystemObjects.Algorithms
                 storages.Add(new Storage(zipPath, jobObject, Enums.StorageType.Split));
             }
             return storages;
+
         }
     }
 }
