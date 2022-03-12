@@ -17,7 +17,7 @@ namespace BackupsExtra.Core.SystemObjects.Types.LogTypes
 
         public void Logging(string log)
         {
-            StreamWriter msg = new StreamWriter(log);
+            StreamWriter msg = new StreamWriter(logPath);
             msg.WriteLine(DateTime.Now + log);
         }
     }

@@ -9,7 +9,7 @@ namespace Backups.Core.SystemObjects.Types
 {
     public class FileSystem : Repository
     {
-        private string filePath {  get; set; }
+        private string filePath { get; set; }
         public string FilePath { get { return filePath; } }
 
         public FileSystem(string _filePath)
