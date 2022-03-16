@@ -15,7 +15,7 @@ namespace lab6
 	{
 		static void Main(string[] args)
 		{
-			string path = "Employees.dat";
+			string path = "C:\\Users\\evilr\\source\\repos\\is-oop-y24\\MarshalkinKirill\\lab6\\bin\\Debug\\netcoreapp3.1\\Employees.dat";
 			InitEmployeeData InitEmployees = new InitEmployeeData(path);
 			ReadEmployeeData ReadEmployees = new ReadEmployeeData();
 			PrintInfo printinfo = new PrintInfo();
@@ -24,22 +24,22 @@ namespace lab6
 			printinfo.PrintAllEmployeeInfo(ReadEmployees.ReadEmployeData(path));
 
 			Console.WriteLine("Комментарии");
-			string commentspath = "Comments.dat";
+			string commentspath = "C:\\Users\\evilr\\source\\repos\\is-oop-y24\\MarshalkinKirill\\lab6\\bin\\Debug\\netcoreapp3.1\\Comments.dat";
 			InitCommentData InitComments = new InitCommentData(commentspath);
 			ReadCommentData ReadComments = new ReadCommentData();
 			var OurCommentsList = ReadComments.ReadComentsData(commentspath);
 			printinfo.PrintAllComments(ReadComments.ReadComentsData(commentspath));
 
-			string sprintpath = "Sprint.dat";
+			string sprintpath = "C:\\Users\\evilr\\source\\repos\\is-oop-y24\\MarshalkinKirill\\lab6\\bin\\Debug\\netcoreapp3.1\\Sprint.dat";
 			InitSprintData InitSprintData = new InitSprintData(sprintpath);
 			ReadSprintData ReadSprintData = new ReadSprintData();
 			var OurSprintsList = ReadSprintData.ReadTSprintsData(sprintpath);
 			printinfo.PrintAllSprintsInfo(ReadSprintData.ReadTSprintsData(sprintpath));
 
-			string taskspath = "Tasks.dat";
+			string taskspath = "C:\\Users\\evilr\\source\\repos\\is-oop-y24\\MarshalkinKirill\\lab6\\bin\\Debug\\netcoreapp3.1\\Tasks.dat";
 			InitTaskData InitTaskData = new InitTaskData(taskspath);
 			ReadTaskData ReadTasks = new ReadTaskData();
-			string logpath = "Taskslog.dat";
+			string logpath = "C:\\Users\\evilr\\source\\repos\\is-oop-y24\\MarshalkinKirill\\lab6\\bin\\Debug\\netcoreapp3.1\\Taskslog.dat";
 			InitTasksLog InitLog = new InitTasksLog(logpath);
 			ReadLogData ReadLog = new ReadLogData();
 
@@ -68,7 +68,7 @@ namespace lab6
 			Employee Armen = new Employee(6, "Armen", ArmenEmployeelist, EmployeeType.SuperVisor);
 			InitEmployees.AddEmployee(Armen);
 			printinfo.PrintAllEmployeeInfo(ReadEmployees.ReadEmployeData(path));
-			InitSprintData.AddSprint(new Sprint(222, new DateTime(2022, 3, 11), new DateTime(2022, 3, 13)));
+			InitSprintData.AddSprint(new Sprint(222, new DateTime(2022, 3, 11), new DateTime(2022, 3, 18)));
 			InitTaskData.AddTask(new Task(121, 222, "Task2", "do something", 1));
 			printinfo.PrintAllSprintsInfo(ReadSprintData.ReadTSprintsData(sprintpath));
 			printinfo.PrintAllTasksInfo(ReadTasks.ReadTasksData(taskspath));
@@ -78,7 +78,7 @@ namespace lab6
 			TaskSystem taskSystem = new TaskSystem(ReadTasks.ReadTasksData(taskspath));
 			printinfo.PrintTaskInfo(taskSystem.SearchTaskByID(123));
 			DateTime searchtime = ReadTasks.ReadTasksData(taskspath)[0].CreationTime;
-			printinfo.PrintTaskInfo(taskSystem.SearchTaskByCreationDate(new DateTime(2022, 3, 12)));
+			printinfo.PrintTaskInfo(taskSystem.SearchTaskByCreationDate(new DateTime(2022, 3, 16)));
 			printinfo.PrintAllTasksInfo(taskSystem.SearchTaskByImplementer(3));
 			Console.WriteLine("Методы системы");
 			Console.WriteLine("\n");
@@ -94,7 +94,7 @@ namespace lab6
 			printinfo.PrintAllTasksInfo(taskSystem.SearchChangedTasks());
 			Console.WriteLine("Поиск по дате изменения");
 			Console.WriteLine("\n");
-			printinfo.PrintTaskInfo(taskSystem.SearchTaskByChangeDate(new DateTime(2022, 3, 12)));
+			printinfo.PrintTaskInfo(taskSystem.SearchTaskByChangeDate(new DateTime(2022, 3, 16)));
 			printinfo.PrintAllTasksInfo(taskSystem.GetSubordinatesTasks(Armen));
 			Console.WriteLine("Отчеты");
 			Console.WriteLine("\n");

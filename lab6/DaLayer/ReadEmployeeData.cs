@@ -9,7 +9,7 @@ using lab6.BlLayer;
 
 namespace lab6.DaLayer
 {
-	class ReadEmployeeData
+	public class ReadEmployeeData
 	{
 
 		public List<Employee> ReadEmployeData(string path)

@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace lab6.DaLayer
 {
-	class ReadSprintData
+	public class ReadSprintData
 	{
 		public List<Sprint> ReadTSprintsData(string path)
 		{

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab6.BlLayer.Reports
 {
-	public class SprintReport 
+	public class SprintReport : AReport
 	{
 		public int EmployeeID { get; set; }
 		public DateTime ReportDay { get; set; }
@@ -17,6 +17,14 @@ namespace lab6.BlLayer.Reports
 		}
 		public SprintReport (int employeeid, Sprint reportsprint)
 		{
+			EmployeeID = employeeid;
+			ReportDay = DateTime.Now.Date;
+			ReportSprint = reportsprint;
+			ReportTasks = new List<Task>();
+		}
+		public SprintReport(int _id, int employeeid, Sprint reportsprint)
+		{
+			id = _id;
 			EmployeeID = employeeid;
 			ReportDay = DateTime.Now.Date;
 			ReportSprint = reportsprint;

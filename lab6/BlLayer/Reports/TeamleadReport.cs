@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab6.BlLayer.Reports
 {
-	public class TeamleadReport 
+	public class TeamleadReport : AReport
 	{
 		public int EmployeeID { get; set; }
 		public List<Task> ReportTasks { get; set; } 
@@ -18,6 +18,16 @@ namespace lab6.BlLayer.Reports
 		}
 		public TeamleadReport (int employeeid, Sprint sprint)
 		{
+			EmployeeID = employeeid;
+			ReportDay = DateTime.Now.Date;
+			Status = ReportStatus.Active;
+			ReportSprint = sprint;
+			EmployeesReportList = new List<SprintReport>();
+			ReportTasks = new List<Task>();
+		}
+		public TeamleadReport(int _id, int employeeid, Sprint sprint)
+		{
+			id = _id;
 			EmployeeID = employeeid;
 			ReportDay = DateTime.Now.Date;
 			Status = ReportStatus.Active;
@@ -47,5 +57,6 @@ namespace lab6.BlLayer.Reports
 				EmployeesReportList.Add(report);
 			}
 		}
+
 	}
 }

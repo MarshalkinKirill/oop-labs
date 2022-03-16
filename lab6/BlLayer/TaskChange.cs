@@ -25,6 +25,14 @@ namespace lab6.BlLayer
 			EmployeeID = employeeid;
 			TypeOfChange = typeofchange;
 		}
+		public TaskChange(int taskid, int employeeid, string comment, OperationType typeofchange)
+		{
+			ChangeDay = DateTime.Now.Date;
+			TaskID = taskid;
+			EmployeeID = employeeid;
+			TypeOfChange = typeofchange;
+			
+		}
 		public void SetStatus(TaskStatus newstatus)
 		{
 			NewTaskStatus = newstatus;

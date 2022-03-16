@@ -17,7 +17,7 @@ namespace lab6.DaLayer
 			SprintPath = path;
 			SprintDataList = new List<Sprint>();
 			InitFile(path);
-			SprintDataList.Add(new Sprint(111, new DateTime(2022, 3, 11), new DateTime(2022, 3, 13)));
+			SprintDataList.Add(new Sprint(111, new DateTime(2022, 3, 11), new DateTime(2022, 3, 18)));
 			SaveSplit(SprintDataList, path);
 		}
 		private void InitFile(string path)

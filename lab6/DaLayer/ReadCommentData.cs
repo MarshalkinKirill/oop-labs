@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace lab6.DaLayer
 {
-	class ReadCommentData
+	public class ReadCommentData
 	{
 
 		public List<Comment> ReadComentsData(string path)

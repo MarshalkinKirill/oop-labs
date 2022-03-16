@@ -31,7 +31,7 @@ namespace lab6.DaLayer
 				File.Delete(path);
 			}
 		}
-		private void SaveEmployees(List<Employee> employees, string path)
+		public void SaveEmployees(List<Employee> employees, string path)
 		{
 
 			File.AppendAllText(path, JsonSerializer.Serialize(employees));
@@ -40,6 +40,7 @@ namespace lab6.DaLayer
 		{
 			InitFile(EmployeePath);
 			EmployeeDataList.Add(employee);
+			Console.WriteLine(EmployeeDataList.Count);
 			SaveEmployees(EmployeeDataList, EmployeePath);
 		}
 		public void UpdateEmployee(int id, Employee changes)
@@ -50,5 +51,12 @@ namespace lab6.DaLayer
 			InitFile(EmployeePath);
 			SaveEmployees(EmployeeDataList, EmployeePath);
 		}
+
+		public int GetCount()
+        {
+			Console.WriteLine(EmployeeDataList.Count);
+			return EmployeeDataList.Count;
+        }
+
 	}
 }

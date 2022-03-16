@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab6.BlLayer.Reports
 {
-	public class DayReport 
+	public class DayReport : AReport
 	{
 		public int EmployeeID { get; set; }
 		public DateTime ReportDay { get; set; }
@@ -13,6 +13,14 @@ namespace lab6.BlLayer.Reports
 		public DayReport()
 		{
 
+		}
+		public DayReport(int _id, int employeeid)
+		{
+			id = _id;
+			EmployeeID = employeeid;
+			ReportDay = DateTime.Now.Date;
+			Status = ReportStatus.Active;
+			ReportTasks = new List<Task>();
 		}
 		public DayReport(int employeeid)
 		{
