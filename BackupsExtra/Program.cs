@@ -22,8 +22,12 @@ namespace BackupsExtra
             BackupJob backupJob1 = new BackupJob("TextBackup", new SplitStorageAlgorithm());
             backupJob1.AddFilePath("Q:\\backupTests\\repos");
 
+            RecoverySystem recoverySystem = new RecoverySystem(backupJob1.FileSystem);
+
             StateRestoringSystem stateRestoringSystem = new StateRestoringSystem("Q:\\backupTests\\stateRestore\\stateRestore.bat", backupJob1.Backup.RestorePoints);
-            
+            List<RestorePoint> statedPoints = stateRestoringSystem.StateRestorePoints();
+
+            Console.WriteLine(statedPoints.Count);
             JobObject obj_1 = new JobObject("Q:\\backupTests\\test1");
             JobObject obj_2 = new JobObject("Q:\\backupTests\\test2");
             JobObject obj_3 = new JobObject("Q:\\backupTests\\test3");
@@ -39,11 +43,14 @@ namespace BackupsExtra
 
             backupJob1.CreateRestorePoint();
 
+            stateRestoringSystem.SaveRestorePoints();
+
             MergeSystem mergeSystem = new MergeSystem();
             RestorePoint mergedPoint = mergeSystem.Merge(backupJob1.Backup.RestorePoints[1], backupJob1.Backup.RestorePoints[2], backupJob1.Backup.RestorePoints);
             backupJob1.CreateRestorePoint(mergedPoint);
 
-            stateRestoringSystem.SaveRestorePoints();
+            Console.WriteLine(backupJob1.Backup.RestorePoints.Count.ToString());
+
 
             ICleanPoints countCleaner = new CountCleanPoints();
             List<RestorePoint> cleanedPoints = countCleaner.Clean(backupJob1.Backup.RestorePoints, new CleaningCondition(2));
@@ -52,6 +59,7 @@ namespace BackupsExtra
                 Console.WriteLine(point);
             }
 
+            recoverySystem.RecoveryToDifferentDirectory(mergedPoint, "qwe", "Q:\\backupTests\\recovery");
         }
     }
 }

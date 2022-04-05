@@ -31,6 +31,7 @@ namespace BackupsExtra.Core.SystemObjects.Types
 
         public void SaveRestorePoints()
         {
+            InitFile();
             File.AppendAllText(restorePointsPath, JsonSerializer.Serialize(restorePoints));
         }
 

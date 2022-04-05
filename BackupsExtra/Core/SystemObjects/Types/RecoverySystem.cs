@@ -34,15 +34,17 @@ namespace BackupsExtra.Core.SystemObjects.Types
 
         public void RecoveryToDifferentDirectory(RestorePoint restorePoint, string name, string directory)
         {
+            int counter1 = 1;
             foreach (Storage storage in restorePoint.Storages)
             {
-                int counter = 1;
+                int counter2 = 1;
                 foreach (JobObject jobObject in storage.JobObjects)
                 {
-                    string _zipPath = directory + "\\" + name + counter.ToString() + ".zip";
+                    string _zipPath = directory + "\\" + name + counter1.ToString() + "_" + counter2.ToString() + ".zip";
                     ZipFile.CreateFromDirectory(jobObject.FilePath, _zipPath);
-                    counter++;
+                    counter2++;
                 }
+                counter1++;
             }
         }
     }
